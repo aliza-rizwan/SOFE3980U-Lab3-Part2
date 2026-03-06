@@ -79,4 +79,59 @@ public class Binary
 		return result;
 		
 	}
+
+	public static Binary or(Binary num1, Binary num2)
+	{
+		int ind1 = num1.number.length()-1;
+		int ind2 = num2.number.length()-1;
+		String result = "";
+
+		while(ind1>=0 || ind2>=0)
+		{
+			int bit1 = (ind1>=0 && num1.number.charAt(ind1)=='1') ? 1:0;
+			int bit2 = (ind2>=0 && num2.number.charAt(ind2)=='1') ? 1:0;
+
+			int r = (bit1 | bit2);
+			result = (r==1?"1":"0") + result;
+
+			ind1--;
+			ind2--;
+		}
+
+		return new Binary(result);
+	}
+
+	public static Binary and(Binary num1, Binary num2)
+	{
+		int ind1 = num1.number.length()-1;
+		int ind2 = num2.number.length()-1;
+		String result = "";
+
+		while(ind1>=0 || ind2>=0)
+		{
+			int bit1 = (ind1>=0 && num1.number.charAt(ind1)=='1') ? 1:0;
+			int bit2 = (ind2>=0 && num2.number.charAt(ind2)=='1') ? 1:0;
+
+			int r = (bit1 & bit2);
+			result = (r==1?"1":"0") + result;
+
+			ind1--;
+			ind2--;
+		}
+
+		return new Binary(result);
+	}
+
+
+	public static Binary multiply(Binary num1, Binary num2)
+	{
+		int n1 = Integer.parseInt(num1.number,2);
+		int n2 = Integer.parseInt(num2.number,2);
+
+		int product = n1 * n2;
+
+		String result = Integer.toBinaryString(product);
+
+		return new Binary(result);
+	}
 }	
